@@ -4,44 +4,60 @@ import 'package:get/get.dart';
 
 class AddProductController extends GetxController {
   late TextEditingController cNama;
-  late TextEditingController cHarga;
+  late TextEditingController cNpm;
+  late TextEditingController cAlamat;
+  late TextEditingController cProgramStudi;
+  late TextEditingController cJk;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  void addproduct(String nama, String harga) async {
-    CollectionReference products = firestore.collection("product");
+  void addProduct(String nama, String npm, String alamat, String programStudi,
+      String jk) async {
+    CollectionReference mahasiswaCollection = firestore.collection("mahasiswa");
 
     try {
-      await products.add({
-        "name": nama,
-        "price": harga,
+      await mahasiswaCollection.add({
+        "nama": nama,
+        "npm": npm,
+        "alamat": alamat,
+        "programstudi": programStudi,
+        "jk": jk,
       });
       Get.defaultDialog(
-          title: "Berhasil",
-          middleText: "Berhasil menyimpan data produk",
-          onConfirm: () {
-            cNama.clear();
-            cHarga.clear();
-            Get.back();
-            Get.back();
-            textConfirm:
-            "OK";
-          });
-    } catch (e) {}
+        title: "Berhasil",
+        middleText: "Berhasil menyimpan data mahasiswa",
+        onConfirm: () {
+          cNama.clear();
+          cNpm.clear();
+          cAlamat.clear();
+          cProgramStudi.clear();
+          cJk.clear();
+          Get.back();
+        },
+      );
+    } catch (e) {
+      // Handle any potential errors here
+      print("Error: $e");
+    }
   }
 
   @override
   void onInit() {
     cNama = TextEditingController();
-    cHarga = TextEditingController();
+    cNpm = TextEditingController();
+    cAlamat = TextEditingController();
+    cProgramStudi = TextEditingController();
+    cJk = TextEditingController();
     super.onInit();
   }
 
   @override
   void onClose() {
     cNama.dispose();
-    cHarga.dispose();
-    // TODO: implement onClose
+    cNpm.dispose();
+    cAlamat.dispose();
+    cProgramStudi.dispose();
+    cJk.dispose();
     super.onClose();
   }
 }

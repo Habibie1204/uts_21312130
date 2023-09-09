@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:projek_get/app/routes/app_pages.dart';
 
@@ -8,6 +7,7 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final cAuth = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +19,25 @@ class LoginView extends GetView<LoginController> {
         padding: EdgeInsets.all(10),
         child: ListView(
           children: [
+            // Image from Google
+            Image.network(
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/UNIVERSITASTEKNOKRAT.png/1200px-UNIVERSITASTEKNOKRAT.png',
+              height: 100,
+              width: 300,
+            ),
+
+            // Text "Universitas Teknokrat Indonesia"
+            Center(
+              child: Text(
+                'Universitas Teknokrat Indonesia',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+
             TextField(
               controller: controller.cEmail,
               decoration: InputDecoration(
@@ -28,7 +47,7 @@ class LoginView extends GetView<LoginController> {
             TextField(
               controller: controller.CPass,
               decoration: InputDecoration(
-                labelText: "Pasword",
+                labelText: "Password",
               ),
             ),
             SizedBox(
@@ -60,7 +79,18 @@ class LoginView extends GetView<LoginController> {
                   child: Text("Daftar Disini"),
                 )
               ],
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () => cAuth.LoginGoogle(),
+              child: Text("Login with Google"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+              ),
+            ),
           ],
         ),
       ),

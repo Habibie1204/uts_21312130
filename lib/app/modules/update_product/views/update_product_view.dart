@@ -29,7 +29,7 @@ class UpdateProductView extends GetView<UpdateProductController> {
                     controller: controller.cNama,
                     autocorrect: false,
                     textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: "Nama Product"),
+                    decoration: InputDecoration(labelText: "npm"),
                   ),
                   SizedBox(
                     height: 10,
@@ -38,7 +38,34 @@ class UpdateProductView extends GetView<UpdateProductController> {
                     controller: controller.cHarga,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(labelText: "Harga Produk"),
+                    decoration: InputDecoration(labelText: "nama"),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: controller.cHarga,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(labelText: "alamat"),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: controller.cHarga,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(labelText: "program studi"),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: controller.cHarga,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(labelText: "jk"),
                   ),
                   SizedBox(
                     height: 30,
