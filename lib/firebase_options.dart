@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -52,11 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCcndJ1t1imn5HFODoFM9BoT5iBkVRLcWY',
+    appId: '1:1057750151140:web:e1e851f9a5d5c4b942e1f1',
+    messagingSenderId: '1057750151140',
+    projectId: 'uas21312130',
+    authDomain: 'uas21312130.firebaseapp.com',
+    storageBucket: 'uas21312130.appspot.com',
+    measurementId: 'G-V6B651QSDR',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCrwtwlusI1M2S9ggAoWF9VBjMIVyCnWfc',
-    appId: '1:601832734834:android:8abf714b512c69e9dc02eb',
-    messagingSenderId: '601832734834',
-    projectId: 'fir-21312130',
-    storageBucket: 'fir-21312130.appspot.com',
+    apiKey: 'AIzaSyCAi9wKHhNgZ1-gpnh2ztJ9MdtqAXuBhQc',
+    appId: '1:1057750151140:android:42bf4cfdd279910142e1f1',
+    messagingSenderId: '1057750151140',
+    projectId: 'uas21312130',
+    storageBucket: 'uas21312130.appspot.com',
   );
 }

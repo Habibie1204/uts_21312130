@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:projek_get/app/controllers/auth_controller.dart';
 
 import 'app/routes/app_pages.dart';
-// Import the generated file
 import 'app/utils/loading.dart';
 import 'firebase_options.dart';
 
@@ -27,15 +26,33 @@ class MyApp extends StatelessWidget {
       stream: CAuth.streamAuthStatus,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
-          return GetMaterialApp(
-              title: "Aplication",
-              initialRoute:
-                  snapshot.data != null && snapshot.data!.emailVerified == true
-                      ? Routes.HOME
-                      : Routes.LOGIN,
-              getPages: AppPages.routes);
+          if (snapshot.hasData) {
+            final user = snapshot.data!;
+            if (user.emailVerified) {
+              return GetMaterialApp(
+                title: "Application",
+                initialRoute: Routes.HOME,
+                getPages: AppPages.routes,
+              );
+            } else {
+              return GetMaterialApp(
+                title: "Application",
+                initialRoute: Routes.LOGIN,
+                getPages: AppPages.routes,
+              );
+            }
+          } else {
+            return GetMaterialApp(
+              title: "Application",
+              initialRoute: Routes.LOGIN,
+              getPages: AppPages.routes,
+            );
+          }
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return Loading(); // Tampilkan widget loading jika sedang menunggu.
+        } else {
+          return Loading(); // Tampilkan widget loading jika terjadi kesalahan.
         }
-        return Loading();
       },
     );
   }

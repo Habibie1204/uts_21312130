@@ -2,17 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddProductController extends GetxController {
+class AddmahasiswaController extends GetxController {
   late TextEditingController cNama;
   late TextEditingController cNpm;
   late TextEditingController cAlamat;
-  late TextEditingController cProgramStudi;
-  late TextEditingController cJk;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  void addProduct(String nama, String npm, String alamat, String programStudi,
-      String jk) async {
+  void addmahasiswa(
+    String nama,
+    String npm,
+    String alamat,
+  ) async {
     CollectionReference mahasiswaCollection = firestore.collection("mahasiswa");
 
     try {
@@ -20,8 +21,6 @@ class AddProductController extends GetxController {
         "nama": nama,
         "npm": npm,
         "alamat": alamat,
-        "programstudi": programStudi,
-        "jk": jk,
       });
       Get.defaultDialog(
         title: "Berhasil",
@@ -30,8 +29,7 @@ class AddProductController extends GetxController {
           cNama.clear();
           cNpm.clear();
           cAlamat.clear();
-          cProgramStudi.clear();
-          cJk.clear();
+
           Get.back();
         },
       );
@@ -46,8 +44,7 @@ class AddProductController extends GetxController {
     cNama = TextEditingController();
     cNpm = TextEditingController();
     cAlamat = TextEditingController();
-    cProgramStudi = TextEditingController();
-    cJk = TextEditingController();
+
     super.onInit();
   }
 
@@ -56,8 +53,7 @@ class AddProductController extends GetxController {
     cNama.dispose();
     cNpm.dispose();
     cAlamat.dispose();
-    cProgramStudi.dispose();
-    cJk.dispose();
+
     super.onClose();
   }
 }
